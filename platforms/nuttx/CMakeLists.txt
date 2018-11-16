@@ -95,7 +95,7 @@ target_link_libraries(${FW_NAME} PRIVATE
 	-fno-exceptions
 	-fno-rtti
 
-	-Wl,--script=${PX4_BINARY_DIR_CYG}/NuttX/nuttx/configs/${BOARD}/scripts/${LD_SCRIPT}
+	-Wl,--script=${PX4_BINARY_DIR_CYG}/NuttX/nuttx/configs/${PX4_BOARD}/scripts/${LD_SCRIPT}
 	-Wl,-Map=${CONFIG}.map
 	-Wl,--warn-common
 	-Wl,--gc-sections
@@ -123,13 +123,13 @@ string(REPLACE "nuttx_" "" fw_name_short ${FW_NAME})
 set(fw_file ${PX4_BINARY_DIR}/${fw_name_short})
 string(REPLACE ".elf" ".px4" fw_file ${fw_file})
 
-add_custom_command(OUTPUT ${PX4_BINARY_DIR_REL}/${BOARD}.bin
-	COMMAND ${OBJCOPY} -O binary ${PX4_BINARY_DIR_REL}/${FW_NAME} ${PX4_BINARY_DIR_REL}/${BOARD}.bin
+add_custom_command(OUTPUT ${PX4_BINARY_DIR_REL}/${PX4_BOARD}.bin
+	COMMAND ${CMAKE_OBJCOPY} -O binary ${PX4_BINARY_DIR_REL}/${FW_NAME} ${PX4_BINARY_DIR_REL}/${PX4_BOARD}.bin
 	DEPENDS ${FW_NAME}
 	)
 
 if (NOT FW_PROTOTYPE)
-	set(FW_PROTOTYPE ${BOARD})
+	set(FW_PROTOTYPE ${PX4_BOARD})
 endif()
 
 if (TARGET parameters_xml AND TARGET airframes_xml)
@@ -139,15 +139,15 @@ if (TARGET parameters_xml AND TARGET airframes_xml)
 			--git_identity ${PX4_SOURCE_DIR}
 			--parameter_xml ${PX4_BINARY_DIR}/parameters.xml
 			--airframe_xml ${PX4_BINARY_DIR}/airframes.xml
-			--image ${PX4_BINARY_DIR}/${BOARD}.bin > ${fw_file}
-		DEPENDS ${PX4_BINARY_DIR}/${BOARD}.bin parameters_xml airframes_xml
+			--image ${PX4_BINARY_DIR}/${PX4_BOARD}.bin > ${fw_file}
+		DEPENDS ${PX4_BINARY_DIR}/${PX4_BOARD}.bin parameters_xml airframes_xml
 		COMMENT "Creating ${fw_file}"
 		)
 
 	add_custom_target(px4 ALL DEPENDS ${fw_file})
 
 	# upload helper
-	if (${BOARD} STREQUAL "aerofc-v1")
+	if (${PX4_BOARD} STREQUAL "aerofc-v1")
 		
 		# TODO: should be set only in aero config
 		add_custom_target(upload
@@ -353,7 +353,7 @@ if(black_magic_probe_path)
 		)
 
 	add_custom_target(blackmagic_console
-		COMMAND screen -t "${BOARD} console" ${black_magic_probe_console_path} 57600 8N1
+		COMMAND screen -t "${PX4_BOARD} console" ${black_magic_probe_console_path} 57600 8N1
 		USES_TERMINAL
 		)
 

@@ -49,8 +49,7 @@
 #		* px4_os_prebuild_targets
 #
 
-include(common/px4_base)
-list(APPEND CMAKE_MODULE_PATH ${PX4_SOURCE_DIR}/cmake/qurt)
+include(px4_base)
 
 #=============================================================================
 #
@@ -152,7 +151,7 @@ function(px4_os_add_flags)
 		ARGN ${ARGN})
 
 	px4_add_common_flags(
-		BOARD ${BOARD}
+		BOARD ${PX4_BOARD}
 		C_FLAGS ${C_FLAGS}
 		CXX_FLAGS ${CXX_FLAGS}
 		OPTIMIZATION_FLAGS ${OPTIMIZATION_FLAGS}

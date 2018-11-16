@@ -45,7 +45,7 @@ pipeline {
           }
 
           // MAC OSX nuttx_px4fmu-v4pro_default
-          build_nodes["px4fmu-v4pro_default (OSX)"] = {
+          build_nodes["px4_fmu-v4pro_default (OSX)"] = {
             node("mac") {
               withEnv(["CCACHE_BASEDIR=${pwd()}"]) {
                 stage("px4fmu-v4pro (OSX)") {
