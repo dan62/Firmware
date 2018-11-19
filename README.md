@@ -15,8 +15,20 @@ This repository holds the [PX4](http://px4.io) flight control solution for drone
   * [VTOL](https://docs.px4.io/en/airframes/airframe_reference.html#vtol)
   * many more experimental types (Rovers, Blimps, Boats, Submarines, etc)
 * Releases: [Downloads](https://github.com/PX4/Firmware/releases)
+----------------------------------------------------------------------------------------------------------------------------------------
+## My Contribution - Daniel Goncalves
+I have decided to contribute to this open source project inorder to better my skills and to assit in making the PX4 firmware better than it is currently. The following are my contributions to this opensource project:
+
+**My plan**
+I want to make a module for onboard machine learning and communication with other drones near by, i will create machine learning to assist in parameter adjustment and collision avoidance. I will also create a communication pipeline to allow for an external Arduino to be connected to allow for wifi communication between drones hich are close in the area. 
+
+**What i have done so far**
 
 
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
 ## PX4 Users
 
 The [PX4 User Guide](https://docs.px4.io/en/) explains how to assemble [supported vehicles](https://docs.px4.io/en/airframes/airframe_reference.html) and fly drones with PX4.
